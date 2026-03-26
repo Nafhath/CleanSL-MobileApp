@@ -21,6 +21,13 @@ jobs:
           flutter-version: '3.x' # Matches your current version
 
       - name: Install dependencies
+      - name: Create .env file
+        run: |
+          touch .env
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
+          echo "SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}" >> .env
+          echo "GOOGLE_WEB_CLIENT_ID=${{ secrets.GOOGLE_WEB_CLIENT_ID }}" >> .env
+          echo "API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
         run: flutter pub get
 
       - name: Build APK
